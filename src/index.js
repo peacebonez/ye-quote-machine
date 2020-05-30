@@ -1,17 +1,85 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { FaTwitterSquare, FaTumblrSquare } from "react-icons/fa";
+import "../src/app.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  state = {
+    quote: null,
+    author: "Kanye West",
+  };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  fetchKanye = () => {
+    fetch("https://api.kanye.rest")
+      .then((response) => response.json())
+      .then((data) => this.setState({ quote: data.quote }));
+  };
+
+  authorGen = () => {
+    fetch("dummy fetch");
+    let authors = ["Kanye West", "Yeezy", "Yeezus", "Ye", "Mr. West", "Pablo"];
+    this.setState({
+      author: authors[Math.floor(Math.random() * authors.length)],
+    });
+  };
+
+  handleQuoteGen = () => {
+    this.fetchKanye();
+    this.authorGen();
+  };
+
+  componentDidMount = () => {
+    this.fetchKanye();
+  };
+
+  render() {
+    const { quote, author } = this.state;
+    return (
+      <QuoteBox>
+        <Text quote={quote} author={author}></Text>
+        <div id="btn-wrapper">
+          <SocialBtn quote={quote}></SocialBtn>
+          <QuoteBtn quoteGen={this.handleQuoteGen}></QuoteBtn>
+        </div>
+      </QuoteBox>
+    );
+  }
+}
+
+const QuoteBox = (props) => {
+  return <div id="quote-box">{props.children}</div>;
+};
+
+const Text = ({ quote, author }) => {
+  return (
+    <div>
+      <h2 id="text">"{quote}"</h2>
+      <p id="author">-{author}</p>
+    </div>
+  );
+};
+
+const QuoteBtn = (props) => {
+  return (
+    <button id="new-quote" onClick={props.quoteGen}>
+      Send It Up
+    </button>
+  );
+};
+
+const SocialBtn = (props) => {
+  return (
+    <div id="socials-wrapper">
+      <a
+        id="tweet-quote"
+        className="icon-button twitter"
+        href={`https://twitter.com/intent/tweet?text=${props.quote}`}
+        target="_blank"
+      >
+        <FaTwitterSquare />
+      </a>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.querySelector("#root"));

@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background: #ddd;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  transition: all 0.9s;
+}
+
+#quote-box {
+  /* background: #fff; */
+  background-image: url("https://specials-images.forbesimg.com/imageserve/5dc5e2dd1e3e66000616382c/960x0.jpg?cropX1=0&cropX2=959&cropY1=0&cropY2=641");
+  background-position: center;
+  width: 40vw;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 15px black;
+}
+
+#text {
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 4px red;
+}
+
+#author {
+  text-align: right;
+  font-size: 1.75vw;
+  margin-right: 4vw;
+  color: #fff;
+}
+
+#btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 40px;
+  color: #fff;
+}
+
+#new-quote {
+  outline: none;
+  border: none;
+  padding: 1.5vw;
+  font-size: 1.4vw;
+  font-weight: 700;
+  font-style: italic;
+  background: red;
+  border: outset 2px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#new-quote:hover {
+  background-color: rgb(136, 0, 2);
+  transition: 0.5s;
+  transform: scale(0.9);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#new-quote:active {
+  background-color: rgb(97, 1, 2);
+  transform: translateY(5%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#socials-wrapper {
+  width: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 4.5vw;
+  /* background: pink; */
+}
+
+#tweet-quote {
+  cursor: pointer;
+  color: #fff;
+}
+
+#tweet-quote:hover {
+  color: #55acee;
+  transition: 0.5s;
+  transform: scale(1.1);
 }
